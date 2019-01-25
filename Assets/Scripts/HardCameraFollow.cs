@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmoothCameraFollow : MonoBehaviour
+public class HardCameraFollow : MonoBehaviour
 {
 
     private Transform target;
-
-    public float followSpeed = 3f;
 
     void Start()
     {
@@ -20,7 +18,7 @@ public class SmoothCameraFollow : MonoBehaviour
         {
             Vector3 newPosition = target.position;
             newPosition.z = transform.position.z;
-            transform.position = Vector3.Slerp(transform.position, newPosition, followSpeed * Time.deltaTime);
+            transform.position = newPosition;
         }
         else
         {
