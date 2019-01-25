@@ -15,13 +15,7 @@ public class PlayerManager : MonoBehaviour
         players[1].gameObject.SetActive(false);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyUp("x"))
-            SwitchPlayers();
-    }
-
-    private void SwitchPlayers()
+    public void SwitchPlayers()
     {
         players[activePlayer].gameObject.SetActive(false);
 
