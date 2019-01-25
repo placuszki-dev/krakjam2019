@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Timer : MonoBehaviour
     private float timeLeft;
 
     private PlayerManager playerManager;
+    public Slider timerSlider;
 
     void Awake()
     {
@@ -20,9 +22,15 @@ public class Timer : MonoBehaviour
     void Update()
     {
         timeLeft -= Time.deltaTime;
+        Visualize();
 
         if (timeLeft <= 0)
             OnTimeLeft();
+    }
+
+    private void Visualize()
+    {
+        timerSlider.value = timeLeft / roundTime;
     }
 
     private void OnTimeLeft()
