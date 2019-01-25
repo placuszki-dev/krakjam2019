@@ -24,14 +24,11 @@ public class PlayerManager : MonoBehaviour
     private void SwitchPlayers()
     {
         players[activePlayer].gameObject.SetActive(false);
-        print("Deactivated player: " + players[activePlayer].name);
 
         activePlayer++;
         if (activePlayer >= 2)
             activePlayer = 0;
 
-        print("Activating player with index : " + activePlayer);
-        print("Activating player: " + players[activePlayer].name);
         players[activePlayer].gameObject.SetActive(true);
         print("Activated player: " + players[activePlayer].name);
     }
