@@ -26,4 +26,9 @@ public class PlayerManager : MonoBehaviour
         players[activePlayer].gameObject.SetActive(true);
         print("Activated player: " + players[activePlayer].name);
     }
+
+    public Player GetActivePlayer()
+    {
+        return players[activePlayer];
+    }
 }

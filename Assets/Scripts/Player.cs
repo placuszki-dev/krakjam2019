@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private Hero hero;
 
     public float speed = 10;
+    public Color timerColor;
 
     void Start()
     {

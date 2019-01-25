@@ -11,7 +11,9 @@ public class Timer : MonoBehaviour
     private float timeLeft;
 
     private PlayerManager playerManager;
+
     public Slider timerSlider;
+    public RectTransform timerFill;
 
     void Awake()
     {
@@ -37,7 +39,13 @@ public class Timer : MonoBehaviour
     {
         Debug.Log("Round time left");
         playerManager.SwitchPlayers();
+        ChangeTimerFillColor();
         restartTimer();
+    }
+
+    private void ChangeTimerFillColor()
+    {
+        timerFill.GetComponent<Image>().color = playerManager.GetActivePlayer().timerColor;
     }
 
     public void restartTimer() {
