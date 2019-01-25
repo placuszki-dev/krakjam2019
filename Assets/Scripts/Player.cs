@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis(gameObject.name + "Horizontal");
+        float moveVertical = Input.GetAxis(gameObject.name + "Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal * Time.deltaTime, moveVertical * Time.deltaTime);
         movement *= speed;
