@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
         // Rotate forward gamepad direction
         Vector3 lookAt = movement.normalized;
         float rot_z = Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg;
-        hero.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+
+        if (movement.magnitude > 0.00001)
+            hero.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
         // Move hero
         hero.transform.Translate(movement, Space.World);
