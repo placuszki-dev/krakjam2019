@@ -3,14 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum MiniGame { NONE, LADDER };
+
 public class Player : MonoBehaviour
 {
+
     private Hero hero;
     private Rigidbody2D heroRigid;
     private Hand hand;
 
     public float speed = 10;
     public Color timerColor;
+
+    private MiniGame currentMiniGame = MiniGame.LADDER;
+
 
     void Start()
     {
@@ -21,9 +27,34 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(hero.canMove) {
+        if (hero.canMove)
+        {
             handleLeftAnalog();
             handleRightAnalog();
+        }
+
+        if (currentMiniGame != MiniGame.NONE)
+            handleMiniGames();
+    }
+
+    private void handleMiniGames()
+    {
+        if (currentMiniGame == MiniGame.LADDER)
+            handleMiniGameLadder();
+    }
+
+    private void handleMiniGameLadder()
+    {
+        if (Input.GetButtonDown(gameObject.name + "Action"))
+        {
+            LadderMiniGameTarget target = FindObjectOfType<LadderMiniGameTarget>();
+            LadderMiniGameButton button = target.GetHeldButton();
+            if (button != null)
+            {
+                print("GOOD");
+                Destroy(button.gameObject);
+                target.VisualizeGood();
+            }
         }
     }
 
@@ -32,7 +63,7 @@ public class Player : MonoBehaviour
         float moveHorizontal = Input.GetAxis(gameObject.name + "Horizontal");
         float moveVertical = Input.GetAxis(gameObject.name + "Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, moveVertical );
+        Vector3 movement = new Vector3(moveHorizontal, moveVertical);
         movement *= speed;
 
         // Rotate forward gamepad direction
