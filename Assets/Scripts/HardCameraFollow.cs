@@ -5,6 +5,7 @@ using UnityEngine;
 public class HardCameraFollow : MonoBehaviour
 {
 
+    public bool lockX = false;
     private Transform target;
 
     void Start()
@@ -18,6 +19,9 @@ public class HardCameraFollow : MonoBehaviour
         {
             Vector3 newPosition = target.position;
             newPosition.z = transform.position.z;
+            if (lockX)
+                newPosition.x = 0;
+
             transform.position = newPosition;
         }
         else
