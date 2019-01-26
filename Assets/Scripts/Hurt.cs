@@ -27,5 +27,5 @@ public class Hurt : MonoBehaviour
             playerManager.GetDamage(damage);
         }
     }
-
+ 
 }

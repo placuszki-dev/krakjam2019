@@ -21,8 +21,10 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        handleLeftAnalog();
-        handleRightAnalog();
+        if(hero.canMove) {
+            handleLeftAnalog();
+            handleRightAnalog();
+        }
     }
 
     private void handleLeftAnalog()
