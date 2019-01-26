@@ -31,4 +31,9 @@ public class PlayerManager : MonoBehaviour
     {
         return players[activePlayer];
     }
+
+
+    public void GetDamage(float damage) {
+        Debug.Log("Get damage: " + damage);
+    }
 }
