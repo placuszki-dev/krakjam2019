@@ -8,4 +8,10 @@ public class Lighting : MonoBehaviour
     {
         Debug.Log("Lighting hit " + other.name);
     }
+
+    public void PlaySound()
+    {
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().Play();
+    }
 }
