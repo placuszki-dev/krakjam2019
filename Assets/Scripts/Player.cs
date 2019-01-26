@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D heroRigid;
     private Hand hand;
 
-    public float speed = 10;
     public Color timerColor;
 
     private MiniGame currentMiniGame = MiniGame.LADDER;
@@ -64,7 +63,7 @@ public class Player : MonoBehaviour
         float moveVertical = Input.GetAxis(gameObject.name + "Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, moveVertical);
-        movement *= speed;
+        movement *= hero.speed;
 
         // Rotate forward gamepad direction
         Vector3 lookAt = movement.normalized;
