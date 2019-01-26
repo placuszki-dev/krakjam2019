@@ -23,19 +23,6 @@ public class Player : MonoBehaviour
         handleRightAnalog();
     }
 
-    private void handleRightAnalog()
-    {
-        float moveHorizontal = Input.GetAxis(gameObject.name + "HorizontalRight");
-        float moveVertical = Input.GetAxis(gameObject.name + "VerticalRight");
-        Vector3 dir = new Vector3(moveHorizontal * Time.deltaTime, moveVertical * Time.deltaTime);
-        if (dir.magnitude > 0.00001)
-        {
-            dir = dir.normalized;
-            float rot_z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            hand.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        }
-    }
-
     private void handleLeftAnalog()
     {
         float moveHorizontal = Input.GetAxis(gameObject.name + "Horizontal");
@@ -53,6 +40,19 @@ public class Player : MonoBehaviour
 
         // Move hero
         hero.transform.Translate(movement, Space.World);
+    }
+
+    private void handleRightAnalog()
+    {
+        float moveHorizontal = Input.GetAxis(gameObject.name + "HorizontalRight");
+        float moveVertical = Input.GetAxis(gameObject.name + "VerticalRight");
+        Vector3 dir = new Vector3(moveHorizontal * Time.deltaTime, moveVertical * Time.deltaTime);
+        if (dir.magnitude > 0.00001)
+        {
+            dir = dir.normalized;
+            float rot_z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            hand.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        }
     }
 }
 
