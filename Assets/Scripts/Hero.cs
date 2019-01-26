@@ -6,15 +6,20 @@ public class Hero : MonoBehaviour
 {
     public float speed = 60;
     public bool canMove = true;
-    // Start is called before the first frame update
+
+    private Rigidbody2D rigid;
+    private Animator animator;
+
+    public float animationRunningMinimumVelocity = 0.1f;
+
     void Start()
     {
-        
+        rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        animator.SetFloat("velocity", rigid.velocity.sqrMagnitude);
     }
 }
