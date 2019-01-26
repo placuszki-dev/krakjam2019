@@ -20,6 +20,7 @@ public class PostProcessingEffectsManager : MonoBehaviour
     [SerializeField] private float boomVignetteFadeOutSpeed = 0.2f;
     [SerializeField] private float boomVignetteMinValue = 0f;
     [SerializeField] private float pauseBetween = 0f;
+    [SerializeField] private Color color = Color.black;
     private VignetteModel.Settings vignetteSettings;
 
     private GrainModel.Settings grainSettings;
@@ -74,7 +75,7 @@ public class PostProcessingEffectsManager : MonoBehaviour
     {
         profile.vignette.enabled = true;
         profile.grain.enabled = true;
-
+        vignetteSettings.color = color;
         for (float i = boomVignetteMinValue; i < boomVignetteMaxValue; i += boomVignetteFadeInSpeed)
         {
             vignetteSettings.intensity = i;
