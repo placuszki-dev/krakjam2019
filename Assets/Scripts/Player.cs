@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Hero hero;
+    private Rigidbody2D heroRigid;
     private Hand hand;
 
     public float speed = 10;
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         hero = FindObjectOfType<Hero>();
+        heroRigid = hero.GetComponent<Rigidbody2D>();
         hand = FindObjectOfType<Hand>();
     }
 
@@ -28,7 +30,7 @@ public class Player : MonoBehaviour
         float moveHorizontal = Input.GetAxis(gameObject.name + "Horizontal");
         float moveVertical = Input.GetAxis(gameObject.name + "Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal * Time.deltaTime, moveVertical * Time.deltaTime);
+        Vector3 movement = new Vector3(moveHorizontal, moveVertical );
         movement *= speed;
 
         // Rotate forward gamepad direction
@@ -39,6 +41,17 @@ public class Player : MonoBehaviour
             hero.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
         // Move hero
+        // MoveWithoutPhysics(movement)
+        MoveWithPhysics(movement);
+    }
+
+    private void MoveWithPhysics(Vector3 movement)
+    {
+        heroRigid.AddForce(movement);
+    }
+
+    private void MoveWithoutPhysics(Vector3 movement)
+    {
         hero.transform.Translate(movement, Space.World);
     }
 
