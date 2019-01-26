@@ -68,6 +68,8 @@ GameObject:
   - component: {fileID: 1357244182}
   - component: {fileID: 1357244184}
   - component: {fileID: 1357244183}
+  - component: {fileID: 1695409479}
+  - component: {fileID: 1695409478}
   m_Layer: 0
   m_Name: lighting
   m_TagString: Untagged
@@ -156,6 +158,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &1695409479
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357244181}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.64
+--- !u!114 &1695409478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357244181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6427fb86c119da4086489cc7c1caaab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7470431335370540528
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +196,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7470431335370540531}
   - component: {fileID: 7470431335370540530}
-  - component: {fileID: 7470431335370540532}
   - component: {fileID: 7470431335370540533}
   m_Layer: 0
   m_Name: box
@@ -239,22 +268,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7470431335370540532
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7470431335370540528}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.99
 --- !u!114 &7470431335370540533
 MonoBehaviour:
   m_ObjectHideFlags: 0
