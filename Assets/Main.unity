@@ -1162,6 +1162,11 @@ PrefabInstance:
       propertyPath: failClip
       value: 
       objectReference: {fileID: 8300000, guid: b7447f9333909444e878489a3b097ce0, type: 3}
+    - target: {fileID: 5965862894324186708, guid: 1347047567f2d1b41ac460474464684b,
+        type: 3}
+      propertyPath: pointSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6dbe18c6211c5fe41aee033f90460317, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1347047567f2d1b41ac460474464684b, type: 3}
 --- !u!1001 &1051742331
