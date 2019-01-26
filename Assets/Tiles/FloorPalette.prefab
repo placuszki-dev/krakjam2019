@@ -64,12 +64,12 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 3ef68333b4e4ee245861a501b46601a8, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: f7ce65b70692bea489c7ef27f6f94b92, type: 2}
+    m_Data: {fileID: 11400000, guid: ad82617dad37a7e4dbdc180a3fa60c86, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 834ab329bbc26304282a97218a48a52b, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: 321f412681bce3e4a8d20428ba3b11b5, type: 3}
+    m_Data: {fileID: 21300000, guid: 4f5f5de35abd5dd4d9cf06e393ebba5e, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -92,6 +92,8 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 2
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -1, y: 0, z: 0}
@@ -171,7 +173,7 @@ GameObject:
   - component: {fileID: 1419490220620241506}
   - component: {fileID: 994713139455992696}
   m_Layer: 31
-  m_Name: TilePalette1
+  m_Name: FloorPalette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,7 +202,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5417702931669935787}
   m_Enabled: 1
-  m_CellSize: {x: 5, y: 5, z: 0}
+  m_CellSize: {x: 10, y: 10, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
