@@ -12,10 +12,12 @@ public class LadderMiniGameTarget : MonoBehaviour
     private LadderMiniGameButton heldButton = null;
     private SpriteRenderer spriteRenderer;
     private float successVisualizationTimeLeft = 0f;
+    private AudioSource audioSource;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -53,5 +55,6 @@ public class LadderMiniGameTarget : MonoBehaviour
     {
         spriteRenderer.color = successColor;
         successVisualizationTimeLeft = timeToVisualizeSucess;
+        audioSource.Play();
     }
 }
