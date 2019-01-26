@@ -34,9 +34,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown(gameObject.name + "Action"))
+            print(gameObject.name + "Action");
 
-            if (Input.GetButtonDown(gameObject.name + "Action"))
-                handleMiniGames();
+        if (Input.GetButtonDown(gameObject.name + "Action"))
+            handleMiniGames();
     }
 
     private void handleMiniGames()
@@ -49,19 +50,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown(gameObject.name + "Action"))
         {
-            print("action...");
             LadderMiniGame miniGame = FindObjectOfType<LadderMiniGame>();
-            LadderMiniGameTarget target = FindObjectOfType<LadderMiniGameTarget>();
-            LadderMiniGameButton button = target.GetHeldButton();
-            if (button != null)
-            {
-                Destroy(button.gameObject);
-                target.VisualizeGood();
-            }
-            else
-            {
-                miniGame.FinishGameFail();
-            }
+            miniGame.OnUserActionButtonPressed();
         }
     }
 

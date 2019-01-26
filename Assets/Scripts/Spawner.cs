@@ -9,17 +9,20 @@ public class Spawner : MonoBehaviour
     public float buttonMoveSpeed = 1f;
     public int itemsNumberToSpawn = 10;
 
+    private LadderMiniGame ladderMiniGame;
+
     private float timeLeftToNextSpawn;
 
     void Start()
     {
         timeLeftToNextSpawn = timeBetweenSpawns;
+        ladderMiniGame = transform.parent.parent.GetComponent<LadderMiniGame>();
     }
 
     void Update()
     {
         timeLeftToNextSpawn -= Time.deltaTime;
-        if(timeLeftToNextSpawn <= 0)
+        if(timeLeftToNextSpawn <= 0 && ladderMiniGame.GetLeftPointsToWin() > 0)
         {
             GameObject instance = Instantiate(gameObjectToSpawn, transform.parent);
             instance.transform.position = transform.position;
