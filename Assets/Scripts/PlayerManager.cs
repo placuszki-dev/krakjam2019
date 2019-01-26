@@ -10,6 +10,9 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        if(players.Length !=2 || players[0] == null || players[1] == null)
+            Debug.LogError("Setup players in player manager");
+
         activePlayer = 0;
         players[activePlayer].gameObject.SetActive(true);
         players[1].gameObject.SetActive(false);
