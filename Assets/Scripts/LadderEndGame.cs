@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destroyer : MonoBehaviour
+public class LadderEndGame : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<LadderMiniGameButton>())
-            Destroy(other.gameObject);
+        {
+            FindObjectOfType<LadderMiniGame>().FinishGameFail();
+        }
     }
 }

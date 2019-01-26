@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-
     PostProcessingEffectsManager postProcessingEffectsManager;
 
     public float roundTime = 10f; // In seconds

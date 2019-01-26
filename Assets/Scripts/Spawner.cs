@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public GameObject gameObjectToSpawn;
     public float timeBetweenSpawns = 1f;
     public float buttonMoveSpeed = 1f;
+    public int itemsNumberToSpawn = 10;
 
     private float timeLeftToNextSpawn;
 

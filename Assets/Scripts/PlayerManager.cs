@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MiniGame { NONE, LADDER };
+
 public class PlayerManager : MonoBehaviour
 {
     private int activePlayer;
     public Player[] players;
+
+    public static MiniGame currentMiniGame = MiniGame.NONE;
 
     void Start()
     {
@@ -34,7 +38,6 @@ public class PlayerManager : MonoBehaviour
     {
         return players[activePlayer];
     }
-
 
     public void GetDamage(float damage) {
         Debug.Log("Get damage: " + damage);

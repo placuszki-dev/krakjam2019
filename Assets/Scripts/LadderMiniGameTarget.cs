@@ -8,16 +8,19 @@ public class LadderMiniGameTarget : MonoBehaviour
 
     public float timeToVisualizeSucess = 0.5f;
     public Color successColor = Color.green;
+    public AudioClip pointSound;
 
     private LadderMiniGameButton heldButton = null;
     private SpriteRenderer spriteRenderer;
     private float successVisualizationTimeLeft = 0f;
     private AudioSource audioSource;
+    private Hero hero;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        hero = FindObjectOfType<Hero>();
     }
 
     void Update()
@@ -33,15 +36,18 @@ public class LadderMiniGameTarget : MonoBehaviour
     {
         if (other.GetComponent<LadderMiniGameButton>())
         {
-            print("YOU LOSE");
             heldButton = null;
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.GetComponent<LadderMiniGameButton>())
         {
+            if (heldButton != null)
+                Debug.LogError("Zwolnij itemy albo zmniejsz czestotliwosc.");
+
             heldButton = other.GetComponent<LadderMiniGameButton>();
         }
     }
@@ -55,6 +61,11 @@ public class LadderMiniGameTarget : MonoBehaviour
     {
         spriteRenderer.color = successColor;
         successVisualizationTimeLeft = timeToVisualizeSucess;
-        audioSource.Play();
+        PlaySound(pointSound);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        FindObjectOfType<SoundPlayer>().PlaySound(clip);
     }
 }

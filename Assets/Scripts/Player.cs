@@ -3,18 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum MiniGame { NONE, LADDER };
 
 public class Player : MonoBehaviour
 {
-
     private Hero hero;
     private Rigidbody2D heroRigid;
     private Hand hand;
 
     public Color timerColor;
-
-    private MiniGame currentMiniGame = MiniGame.LADDER;
 
 
     void Start()
@@ -31,14 +27,17 @@ public class Player : MonoBehaviour
             handleLeftAnalog();
             handleRightAnalog();
         }
+    }
 
-        if (currentMiniGame != MiniGame.NONE)
+    void Update()
+    {
+        if (Input.GetButtonDown(gameObject.name + "Action"))
             handleMiniGames();
     }
 
     private void handleMiniGames()
     {
-        if (currentMiniGame == MiniGame.LADDER)
+        if (PlayerManager.currentMiniGame == MiniGame.LADDER)
             handleMiniGameLadder();
     }
 
@@ -46,13 +45,18 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown(gameObject.name + "Action"))
         {
+            print("action...");
+            LadderMiniGame miniGame = FindObjectOfType<LadderMiniGame>();
             LadderMiniGameTarget target = FindObjectOfType<LadderMiniGameTarget>();
             LadderMiniGameButton button = target.GetHeldButton();
             if (button != null)
             {
-                print("GOOD");
                 Destroy(button.gameObject);
                 target.VisualizeGood();
+            }
+            else
+            {
+                miniGame.FinishGameFail();
             }
         }
     }
