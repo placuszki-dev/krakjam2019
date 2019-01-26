@@ -5,6 +5,8 @@ using UnityEngine;
 public class Patroling : MonoBehaviour
 {
     private Hero hero;
+
+    private bool isMoving = true;
     // Forward means moving towards partolEnd
     private bool isMovingForward = true;
     private bool isAttacking = false;
@@ -34,6 +36,8 @@ public class Patroling : MonoBehaviour
 
     void Update()
     {
+        if(!isMoving) return;
+
         Vector3 targetPos = GetCurrentTargetPosition();
 
         if (!isPartolling && Vector2.Distance(body.transform.position, targetPos) < 0.2f) return;
@@ -118,5 +122,15 @@ public class Patroling : MonoBehaviour
         {
             isAttacking = false;
         }
+    }
+
+    public void StopMoving() {
+        isMoving = false;
+        currentSpeed = movingSpeed;
+        Invoke("StartMoving", 0.5f);
+    }
+
+    void StartMoving() {
+        isMoving = true;
     }
 }
