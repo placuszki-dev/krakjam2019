@@ -1,99 +1,136 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using UnityEngine
 
 public class Patroling : MonoBehaviour
 {
-	private Hero hero;
-	private GameObject body;
-	// Forward means moving towards partolEnd
-	private bool isMovingForward = true;
-	private bool isAttacking = false;
+    private Hero hero;
 
-	private Vector3 initialPos;
+    private bool isMoving = true;
+    // Forward means moving towards partolEnd
+    private bool isMovingForward = true;
+    private bool isAttacking = false;
 
-	public float moveSpeed = 1f;
-	public float attackingSpeed = 2f;
+    private float currentSpeed;
 
-	public bool isPartolling = false;
-	public GameObject patrolStart;
-	public GameObject patrolEnd;
-	
-	void Start () {
-		body = transform.parent.gameObject;
-		initialPos = body.transform.position;
-		hero = FindObjectOfType<Hero>();
-		rotateTowardsAim((patrolEnd.transform.position - body.transform.position).normalized);
-	}
+    private Vector3 initialPos;
 
-	void Update () {
+    public float rotatingSpeed = 10f;
+    public float movingSpeed = 1f;
+
+    public float attackingSpeed = 2f;
+
+    public float accelerationSpeed = 1f;
+
+    public bool isPartolling = false;
+
+    public GameObject body;
+    public GameObject patrolStart;
+    public GameObject patrolEnd;
+
+    void Start()
+    {
+        initialPos = body.transform.position;
+        hero = FindObjectOfType<Hero>();
+    }
+
+    void Update()
+    {
+        if(!isMoving) return;
+
+        Vector3 targetPos = GetCurrentTargetPosition();
+
+        if (!isPartolling && Vector2.Distance(body.transform.position, targetPos) < 0.2f) return;
+
+        currentSpeed = isAttacking ? Mathf.Min(currentSpeed + Time.deltaTime * accelerationSpeed, attackingSpeed) : movingSpeed;
+
 		if (isAttacking) {
-			UpdateAttack();
-		} else if (isPartolling) {
-			UpdatePatrol();
-		} else {
-			UpdateGoBack();
+			// When attacking look and move even if it is not yet rotated
+			LookAt2D(targetPos);
+			MoveTowards(targetPos, currentSpeed);
+		} else if (LookAt2D(targetPos)) {
+			MoveTowards(targetPos, currentSpeed);
 		}
+
+        if (!isAttacking && isPartolling)
+        {
+            UpdatePatrolDirection();
+        }
+    }
+
+	void MoveTowards(Vector3 target, float speed) {
+		body.transform.position = Vector3.MoveTowards(body.transform.position, target, Time.deltaTime * currentSpeed);
 	}
 
-	void UpdatePatrol() {
-		Vector2 moveDirection = ((isMovingForward ? patrolEnd : patrolStart).transform.position - body.transform.position).normalized * moveSpeed * Time.deltaTime;
+    Vector3 GetCurrentTargetPosition()
+    {
+        if (isAttacking) return hero.transform.position;
+        if (isPartolling)
+        {
+            if (isMovingForward) return patrolStart.transform.position;
+            return patrolEnd.transform.position;
+        }
+        return initialPos;
+    }
 
-		Vector3 newPosition = new Vector3 (body.transform.position.x + moveDirection.x, body.transform.position.y + moveDirection.y, 0);
+    void UpdatePatrolDirection()
+    {
+        Vector3 position = body.transform.position;
+        Vector2 patrolStartPos = patrolStart.transform.position;
+        Vector2 patrolEndPos = patrolEnd.transform.position;
 
-		Vector2 patrolStartPos = patrolStart.transform.position;
-		Vector2 patrolEndPos = patrolEnd.transform.position;
+        if (
+			isMovingForward ?
+			(patrolStartPos.x > patrolEndPos.x ? position.x >= patrolStartPos.x : position.x <= patrolStartPos.x) :
+			(patrolStartPos.x > patrolEndPos.x ? position.x >= patrolEndPos.x : position.x >= patrolEndPos.x) &&
+			isMovingForward ?
+			(patrolStartPos.y > patrolEndPos.y ? position.y >= patrolStartPos.y : position.y <= patrolStartPos.y) :
+			(patrolStartPos.y > patrolEndPos.y ? position.y >= patrolEndPos.y : position.y >= patrolEndPos.y)
+        )
+        {
+            // Change moving direction
+            isMovingForward = !isMovingForward;
+        }
+    }
 
-		if (
-			// Handle cases when start pos is after end pos
-			(patrolStartPos.x > patrolEndPos.x ?
-		patrolEndPos.x < newPosition.x && newPosition.x < patrolStartPos.x :
-		patrolStartPos.x < newPosition.x && newPosition.x < patrolEndPos.x) &&
-		(patrolStartPos.y > patrolEndPos.y ? 
-		patrolEndPos.y < newPosition.y && newPosition.y < patrolStartPos.y :
-		patrolStartPos.y < newPosition.y && newPosition.y < patrolEndPos.y)
-		) {
-			body.transform.position = newPosition;
-		} else {
-			// Change sprite orientation
-			rotateTowardsAim(-moveDirection);
-			// Change moving direction
-			isMovingForward = !isMovingForward;
-		}
-	}
+    bool LookAt2D(Vector3 lookAtPosition)
+    {
+        float distanceX = lookAtPosition.x - body.transform.position.x;
+        float distanceY = lookAtPosition.y - body.transform.position.y;
+        float angle = Mathf.Atan2(distanceX, distanceY) * Mathf.Rad2Deg;
 
-	void UpdateAttack() {
-		Vector2 attackDirection = (hero.transform.position - transform.position).normalized * Time.deltaTime * attackingSpeed;
-		body.transform.position = new Vector3(body.transform.position.x + attackDirection.x, body.transform.position.y + attackDirection.y);
-		rotateTowardsAim(attackDirection.normalized);
-	}
+        Quaternion endRotation = Quaternion.AngleAxis(angle, Vector3.back);
+        body.transform.rotation = Quaternion.Slerp(body.transform.rotation, endRotation, Time.deltaTime * rotatingSpeed);
 
-	void UpdateGoBack() {
-		Vector2 backDirection = (initialPos - transform.position).normalized * Time.deltaTime * attackingSpeed;
-		body.transform.position = new Vector3(body.transform.position.x + backDirection.x, body.transform.position.y + backDirection.y);
-	}
+        if (Quaternion.Angle(body.transform.rotation, endRotation) < 1f)
+            return true;
 
-	void rotateTowardsAim(Vector2 aim) {
-		// Rotate forward aim direction
-        float rot_z = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg;
+        return false;
+    }
 
-		body.transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
-	}
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col && col.GetComponent<Hero>())
+        {
+            isAttacking = true;
+        }
+    }
 
-	void OnTriggerEnter2D(Collider2D col) {
-		if (col && col.GetComponent<Hero>()) {
-			rotateTowardsAim((hero.transform.position - body.transform.position).normalized);
-			isAttacking = true;
-		}
-	}
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col && col.GetComponent<Hero>())
+        {
+            isAttacking = false;
+        }
+    }
 
-	void OnTriggerExit2D(Collider2D col) {
-		if (col && col.GetComponent<Hero>()) {
-			rotateTowardsAim(
-				((isPartolling ? initialPos : (isMovingForward ? patrolEnd : patrolStart).transform.position) - body.transform.position).normalized
-				);
-			isAttacking = false;
-		}
-	}
+    public void StopMoving() {
+        isMoving = false;
+        currentSpeed = movingSpeed;
+        Invoke("StartMoving", 0.5f);
+    }
+
+    void StartMoving() {
+        isMoving = true;
+    }
 }

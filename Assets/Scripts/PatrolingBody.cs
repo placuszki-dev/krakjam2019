@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hurt : MonoBehaviour
+public class PatrolingBody : MonoBehaviour
 {
 
     private PlayerManager playerManager;
@@ -17,7 +17,7 @@ public class Hurt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -25,7 +25,8 @@ public class Hurt : MonoBehaviour
         if (col && col.GetComponent<Hero>())
         {
             playerManager.GetDamage(damage);
+            GetComponentInChildren<Patroling>().StopMoving();
         }
     }
- 
+
 }
