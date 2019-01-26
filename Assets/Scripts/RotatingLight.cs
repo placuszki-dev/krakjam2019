@@ -12,4 +12,9 @@ public class RotatingLight : MonoBehaviour
     {
         transform.Rotate(rotation * rotationSpeed, space);
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Rotating light " + name + " hit " + other.name);
+    }
 }
