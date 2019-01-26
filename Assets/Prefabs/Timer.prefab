@@ -46,3 +46,4 @@ MonoBehaviour:
   roundTime: 5
   timerSlider: {fileID: 0}
   timerFill: {fileID: 0}
+  secondsBeforeRoundEndStartChangePlayerAnimation: 2

@@ -17,6 +17,9 @@ public class Timer : MonoBehaviour
     public Slider timerSlider;
     public RectTransform timerFill;
 
+    private bool canPlayChangePlayerEffect = true;
+    public float secondsBeforeRoundEndStartChangePlayerAnimation = 2;
+
     void Awake()
     {
         playerManager = FindObjectOfType<PlayerManager>();
@@ -31,6 +34,13 @@ public class Timer : MonoBehaviour
 
         if (timeLeft <= 0)
             OnTimeLeft();
+
+        if (timeLeft <= secondsBeforeRoundEndStartChangePlayerAnimation && canPlayChangePlayerEffect)
+        {
+            canPlayChangePlayerEffect = false;
+            postProcessingEffectsManager.BloomBoom();
+            postProcessingEffectsManager.VignetteBoom();
+        }
     }
 
     private void Visualize()
@@ -44,8 +54,7 @@ public class Timer : MonoBehaviour
         playerManager.SwitchPlayers();
         ChangeTimerFillColor();
         restartTimer();
-        postProcessingEffectsManager.BloomBoom();
-        postProcessingEffectsManager.VignetteBoom();
+        canPlayChangePlayerEffect = true;
     }
 
     private void ChangeTimerFillColor()

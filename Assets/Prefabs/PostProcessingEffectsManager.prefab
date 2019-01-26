@@ -45,11 +45,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boomBloomFadeInSpeed: 5
   boomBloomMaxValue: 15
-  boomBloomFadeOutSpeed: 0.2
+  boomBloomFadeOutSpeed: 0.1
   boomBloomMinValue: 0
   boomBloomDisableAfterBoom: 0
   boomVignetteFadeInSpeed: 0.03
-  boomVignetteMaxValue: 2.82
-  boomVignetteFadeOutSpeed: 0.12
+  boomVignetteMaxValue: 2.5
+  boomVignetteFadeOutSpeed: 0.1
   boomVignetteMinValue: 0
-  pauseBetween: 0.1
+  pauseBetween: 0.2
+  color: {r: 0, g: 0, b: 0, a: 1}
