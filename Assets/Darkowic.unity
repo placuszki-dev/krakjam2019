@@ -122,17 +122,17 @@ PrefabInstance:
     - target: {fileID: 363448537038390738, guid: 647e520a80b82ee48a1049dc1a9bfb94,
         type: 3}
       propertyPath: m_Name
-      value: stain
+      value: Stain
       objectReference: {fileID: 0}
     - target: {fileID: 363448537038390739, guid: 647e520a80b82ee48a1049dc1a9bfb94,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.18
+      value: 7.91
       objectReference: {fileID: 0}
     - target: {fileID: 363448537038390739, guid: 647e520a80b82ee48a1049dc1a9bfb94,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.86
+      value: -6.32
       objectReference: {fileID: 0}
     - target: {fileID: 363448537038390739, guid: 647e520a80b82ee48a1049dc1a9bfb94,
         type: 3}
@@ -178,6 +178,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 363448537038390739, guid: 647e520a80b82ee48a1049dc1a9bfb94,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6214
+      objectReference: {fileID: 0}
+    - target: {fileID: 363448537038390739, guid: 647e520a80b82ee48a1049dc1a9bfb94,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.6214
+      objectReference: {fileID: 0}
+    - target: {fileID: 363448537038390739, guid: 647e520a80b82ee48a1049dc1a9bfb94,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.6214
+      objectReference: {fileID: 0}
+    - target: {fileID: 363448537038390734, guid: 647e520a80b82ee48a1049dc1a9bfb94,
+        type: 3}
+      propertyPath: slowSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 363448537038390734, guid: 647e520a80b82ee48a1049dc1a9bfb94,
+        type: 3}
+      propertyPath: linearDrag
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 647e520a80b82ee48a1049dc1a9bfb94, type: 3}
@@ -1130,7 +1155,7 @@ PrefabInstance:
     - target: {fileID: 6719270865975955793, guid: 4df72ca2787f5aa419d9a7605f57f324,
         type: 3}
       propertyPath: roundTime
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4df72ca2787f5aa419d9a7605f57f324, type: 3}
@@ -2342,6 +2367,16 @@ PrefabInstance:
     - target: {fileID: 1871048585644236855, guid: e16a9daa4b127f24485e2c689cde39e4,
         type: 3}
       propertyPath: minimumVelocityToPlaySteps
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182367060850506569, guid: e16a9daa4b127f24485e2c689cde39e4,
+        type: 3}
+      propertyPath: speed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182367060850506569, guid: e16a9daa4b127f24485e2c689cde39e4,
+        type: 3}
+      propertyPath: canMove
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
