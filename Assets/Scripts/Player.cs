@@ -12,12 +12,14 @@ public class Player : MonoBehaviour
 
     public Color timerColor;
 
+    private PlayerManager playerManager;
 
     void Start()
     {
         hero = FindObjectOfType<Hero>();
         heroRigid = hero.GetComponent<Rigidbody2D>();
         hand = FindObjectOfType<Hand>();
+        playerManager = FindObjectOfType<PlayerManager>();
     }
 
     void FixedUpdate()
@@ -32,7 +34,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown(gameObject.name + "Action"))
-            handleMiniGames();
+
+            if (Input.GetButtonDown(gameObject.name + "Action"))
+                handleMiniGames();
     }
 
     private void handleMiniGames()
