@@ -22,8 +22,7 @@ public class Hurt : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col && col.GetComponent<Hero>())
-        {
+        if (col && col.GetComponent<Hero>()) {
             playerManager.GetDamage(damage);
         }
     }
