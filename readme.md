@@ -14,7 +14,7 @@ Game: Second thought
 
   
 ## Screenshoots
-![Alt text](screenshoots/s1.png?raw=true "screenshoots/s1.png")  
-![Alt text](screenshoots/s2.png?raw=true "screenshoots/s2.png")  
-![Alt text](screenshoots/s3.png?raw=true "screenshoots/s3.png")  
+![Alt text](screenshoots/s1.PNG?raw=true "screenshoots/s1.PNG")  
+![Alt text](screenshoots/s2.PNG?raw=true "screenshoots/s2.PNG")  
+![Alt text](screenshoots/s3.PNG?raw=true "screenshoots/s3.PNG")  
  
