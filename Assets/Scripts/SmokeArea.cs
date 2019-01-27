@@ -38,7 +38,6 @@ public class SmokeArea : MonoBehaviour
         if (col && col.GetComponent<Hero>())
         {
             CancelInvoke("Hurt");
-            GetComponentInChildren<Patroling>().OnAttackEnd();
         }
     }
 }
