@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - KillField
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -46,6 +48,9 @@ TagManager:
     locked: 0
   - name: Obstacles
     uniqueID: 462475801
+    locked: 0
+  - name: Enemies
+    uniqueID: 1685894387
     locked: 0
   - name: Hero
     uniqueID: 4243268929
