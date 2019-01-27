@@ -59,8 +59,8 @@ public class Player : MonoBehaviour
 
     private void handleLeftAnalog()
     {
-        float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX, controller);
-        float moveVertical = XCI.GetAxis(XboxAxis.LeftStickY, controller);
+        float moveHorizontal = XCI.IsPluggedIn(controller) ? XCI.GetAxis(XboxAxis.LeftStickX, controller) : 0;
+        float moveVertical = XCI.IsPluggedIn(controller) ? XCI.GetAxis(XboxAxis.LeftStickY, controller) : 0;
 
         if (Input.GetKey("a") && playerManager.GetActivePlayer().name == "Player1") moveHorizontal = -1;
         if (Input.GetKey("d") && playerManager.GetActivePlayer().name == "Player1") moveHorizontal = 1;
