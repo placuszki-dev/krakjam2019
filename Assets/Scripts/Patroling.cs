@@ -24,6 +24,8 @@ public class Patroling : MonoBehaviour
 
     public bool isPartolling = false;
 
+    public bool canAttack = true;
+
     public GameObject body;
     public GameObject patrolStart;
     public GameObject patrolEnd;
@@ -36,7 +38,7 @@ public class Patroling : MonoBehaviour
 
     void Update()
     {
-        if(!isMoving) return;
+        if (!isMoving || !canAttack) return;
 
         Vector3 targetPos = GetCurrentTargetPosition();
 
@@ -44,13 +46,16 @@ public class Patroling : MonoBehaviour
 
         currentSpeed = isAttacking ? Mathf.Min(currentSpeed + Time.deltaTime * accelerationSpeed, attackingSpeed) : movingSpeed;
 
-		if (isAttacking) {
-			// When attacking look and move even if it is not yet rotated
-			LookAt2D(targetPos);
-			MoveTowards(targetPos, currentSpeed);
-		} else if (LookAt2D(targetPos)) {
-			MoveTowards(targetPos, currentSpeed);
-		}
+        if (isAttacking)
+        {
+            // When attacking look and move even if it is not yet rotated
+            LookAt2D(targetPos);
+            MoveTowards(targetPos, currentSpeed);
+        }
+        else if (LookAt2D(targetPos))
+        {
+            MoveTowards(targetPos, currentSpeed);
+        }
 
         if (!isAttacking && isPartolling)
         {
@@ -58,9 +63,10 @@ public class Patroling : MonoBehaviour
         }
     }
 
-	void MoveTowards(Vector3 target, float speed) {
-		body.transform.position = Vector3.MoveTowards(body.transform.position, target, Time.deltaTime * currentSpeed);
-	}
+    void MoveTowards(Vector3 target, float speed)
+    {
+        body.transform.position = Vector3.MoveTowards(body.transform.position, target, Time.deltaTime * currentSpeed);
+    }
 
     Vector3 GetCurrentTargetPosition()
     {
@@ -75,18 +81,9 @@ public class Patroling : MonoBehaviour
 
     void UpdatePatrolDirection()
     {
-        Vector3 position = body.transform.position;
-        Vector2 patrolStartPos = patrolStart.transform.position;
-        Vector2 patrolEndPos = patrolEnd.transform.position;
+        Vector3 target = (isMovingForward ? patrolStart : patrolEnd).transform.position;
 
-        if (
-			isMovingForward ?
-			(patrolStartPos.x > patrolEndPos.x ? position.x >= patrolStartPos.x : position.x <= patrolStartPos.x) :
-			(patrolStartPos.x > patrolEndPos.x ? position.x >= patrolEndPos.x : position.x >= patrolEndPos.x) &&
-			isMovingForward ?
-			(patrolStartPos.y > patrolEndPos.y ? position.y >= patrolStartPos.y : position.y <= patrolStartPos.y) :
-			(patrolStartPos.y > patrolEndPos.y ? position.y >= patrolEndPos.y : position.y >= patrolEndPos.y)
-        )
+        if (Vector2.Distance(body.transform.position, target) < 0.1f)
         {
             // Change moving direction
             isMovingForward = !isMovingForward;
@@ -124,13 +121,31 @@ public class Patroling : MonoBehaviour
         }
     }
 
-    public void StopMoving() {
-        isMoving = false;
+    public void OnAttack()
+    {
+        Debug.Log("On attack!");
+        StopMoving();
+        canAttack = false;
         currentSpeed = movingSpeed;
-        Invoke("StartMoving", 0.5f);
+        Invoke("StartMoving", 1);
     }
 
-    void StartMoving() {
+    public void OnAttackEnd()
+    {
+        Invoke("CanAttack", 0.1f);
+    }
+
+    void CanAttack() {
+        canAttack = true;
+    }
+
+    void StopMoving()
+    {
+        isMoving = false;
+    }
+
+    void StartMoving()
+    {
         isMoving = true;
     }
 }

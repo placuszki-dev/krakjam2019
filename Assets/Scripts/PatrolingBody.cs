@@ -20,12 +20,27 @@ public class PatrolingBody : MonoBehaviour
 
     }
 
+    void Hurt()
+    {
+        playerManager.GetDamage(damage);
+        Invoke("Hurt", 1f);
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col && col.GetComponent<Hero>())
         {
-            playerManager.GetDamage(damage);
-            GetComponentInChildren<Patroling>().StopMoving();
+            Hurt();
+            GetComponentInChildren<Patroling>().OnAttack();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col && col.GetComponent<Hero>())
+        {
+            CancelInvoke("Hurt");
+            GetComponentInChildren<Patroling>().OnAttackEnd();
         }
     }
 
