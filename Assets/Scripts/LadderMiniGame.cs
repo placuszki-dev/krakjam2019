@@ -28,7 +28,6 @@ public class LadderMiniGame : MonoBehaviour
     {
         FindObjectOfType<Hero>().canMove = false;
         transform.GetChild(0).gameObject.SetActive(true);
-        PlayerManager.currentMiniGame = MiniGame.LADDER;
         leftPointsToWin = requiredPointsToWin;
         FindObjectOfType<MiniGameManager>().SetCurrentMiniGame(this);
     }
@@ -36,7 +35,6 @@ public class LadderMiniGame : MonoBehaviour
     internal void FinishGameFail()
     {
         DestroyAllButtons();
-        PlayerManager.currentMiniGame = MiniGame.NONE;
         print("FinishGameFail");
         FindObjectOfType<Hero>().canMove = true;
         FindObjectOfType<SoundPlayer>().PlaySound(failClip);
@@ -48,7 +46,6 @@ public class LadderMiniGame : MonoBehaviour
     internal void FinishGameSuccess()
     {
         DestroyAllButtons();
-        PlayerManager.currentMiniGame = MiniGame.NONE;
         print("FinishGameSuccess");
         FindObjectOfType<Hero>().canMove = true;
         FindObjectOfType<SoundPlayer>().PlaySound(successClip);

@@ -4,20 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum MiniGame { NONE, LADDER };
-
 public class PlayerManager : MonoBehaviour
 {
     private int activePlayer;
     public Player[] players;
     private int deadPlayers = 0;
 
-    public static MiniGame currentMiniGame = MiniGame.NONE;
-    private PostProcessingEffectsManager postProcessingEffectsManager;
-
     void Start()
     {
-        postProcessingEffectsManager = FindObjectOfType<PostProcessingEffectsManager>();
 
         if (players.Length != 2 || players[0] == null || players[1] == null)
             Debug.LogError("Setup players in player manager");
@@ -37,9 +31,6 @@ public class PlayerManager : MonoBehaviour
 
         players[activePlayer].gameObject.SetActive(true);
         print("Activated player: " + players[activePlayer].name);
-
-        postProcessingEffectsManager.BloomBoom();
-        postProcessingEffectsManager.VignetteBoom();
     }
 
     public Player GetActivePlayer()
