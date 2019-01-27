@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using XboxCtrlrInput;
 
 
@@ -15,7 +16,8 @@ public class Player : MonoBehaviour
     public Color timerColor;
 
     private PlayerManager playerManager;
-    private int health = 100;
+    private const int MAX_HEALTH = 100;
+    private int health;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
         hand = FindObjectOfType<Hand>();
         playerManager = FindObjectOfType<PlayerManager>();
         XCI.DEBUG_LogControllerNames();
+        health = MAX_HEALTH;
     }
 
     void FixedUpdate()
@@ -61,6 +64,14 @@ public class Player : MonoBehaviour
     internal void GetDamage(int damage)
     {
         health -= damage;
+        print("health: " + health);
+        visualizeHealth();
+    }
+
+    private void visualizeHealth()
+    {
+        Slider slider = GameObject.Find(name + "Health").GetComponent<Slider>();
+        slider.value = (float)health / (float)MAX_HEALTH;
     }
 
     private void handleLeftAnalog()
@@ -108,7 +119,7 @@ public class Player : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis(gameObject.name + "HorizontalRight");
         float moveVertical = Input.GetAxis(gameObject.name + "VerticalRight");
-        
+
         Vector3 dir = new Vector3(moveHorizontal * Time.deltaTime, moveVertical * Time.deltaTime);
         if (dir.magnitude > 0.00001)
         {
