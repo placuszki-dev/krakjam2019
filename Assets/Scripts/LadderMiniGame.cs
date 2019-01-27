@@ -19,11 +19,6 @@ public class LadderMiniGame : MonoBehaviour
         hero = FindObjectOfType<Hero>();
     }
 
-    void Update()
-    {
-        print(leftPointsToWin);
-
-    }
     void OnTriggerEnter2D(Collider2D other)
     {
         StartLadderMiniGame();
