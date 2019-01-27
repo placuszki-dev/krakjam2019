@@ -6,7 +6,7 @@ public class SmokeArea : MonoBehaviour
 {
     private PlayerManager playerManager;
 
-    public int damage = 5;
+    public int damage = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +22,14 @@ public class SmokeArea : MonoBehaviour
     void Hurt()
     {
         playerManager.GetDamage(damage);
-        Invoke("Hurt", 1f);
+        Invoke("Hurt", 0.2f);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col && col.GetComponent<Hero>())
         {
-            Invoke("Hurt", 2f);
+            Invoke("Hurt", 1f);
         }
     }
 
