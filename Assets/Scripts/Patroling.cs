@@ -27,6 +27,8 @@ public class Patroling : MonoBehaviour
     public bool canAttack = true;
 
     public GameObject body;
+
+    private Animator bodyAnimator;
     public GameObject patrolStart;
     public GameObject patrolEnd;
 
@@ -34,17 +36,28 @@ public class Patroling : MonoBehaviour
     {
         initialPos = body.transform.position;
         hero = FindObjectOfType<Hero>();
+        bodyAnimator = body.GetComponent<Animator>();
     }
 
     void Update()
     {
+        if(bodyAnimator) {
+            bodyAnimator.SetBool("isMoving", isMoving);
+            bodyAnimator.SetFloat("speed", currentSpeed);
+        }
         if (!isMoving || !canAttack) return;
 
         Vector3 targetPos = GetCurrentTargetPosition();
 
-        if (!isPartolling && Vector2.Distance(body.transform.position, targetPos) < 0.2f) return;
+        if (!isPartolling && Vector2.Distance(body.transform.position, targetPos) < 0.2f)
+        {
+            currentSpeed = 0;
+            return;
+        };
 
-        currentSpeed = isAttacking ? Mathf.Min(currentSpeed + Time.deltaTime * accelerationSpeed, attackingSpeed) : movingSpeed;
+        currentSpeed = isAttacking ?
+            Mathf.Min(Mathf.Max(currentSpeed, movingSpeed) + Time.deltaTime * accelerationSpeed, attackingSpeed) :
+            movingSpeed;
 
         if (isAttacking)
         {
@@ -135,7 +148,8 @@ public class Patroling : MonoBehaviour
         Invoke("CanAttack", 0.1f);
     }
 
-    void CanAttack() {
+    void CanAttack()
+    {
         canAttack = true;
     }
 
