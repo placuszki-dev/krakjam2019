@@ -38,7 +38,7 @@ public class LadderMiniGame : MonoBehaviour
         PlayerManager.currentMiniGame = MiniGame.NONE;
         print("FinishGameFail");
         FindObjectOfType<Hero>().canMove = true;
-        FindObjectOfType<SoundPlayer>().PlaySound(successClip);
+        FindObjectOfType<SoundPlayer>().PlaySound(failClip);
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         FindObjectOfType<PlayerManager>().GetDamage(damageOnFail);
     }
@@ -49,7 +49,7 @@ public class LadderMiniGame : MonoBehaviour
         PlayerManager.currentMiniGame = MiniGame.NONE;
         print("FinishGameSuccess");
         FindObjectOfType<Hero>().canMove = true;
-        FindObjectOfType<SoundPlayer>().PlaySound(failClip);
+        FindObjectOfType<SoundPlayer>().PlaySound(successClip);
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         hero.transform.position = transform.Find("WinPosition").position;
     }
