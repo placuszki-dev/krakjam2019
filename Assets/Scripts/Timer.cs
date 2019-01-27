@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    PostProcessingEffectsManager postProcessingEffectsManager;
-
     public float roundTime = 10f; // In seconds
     private float timeLeft;
 
@@ -22,7 +20,6 @@ public class Timer : MonoBehaviour
     void Awake()
     {
         playerManager = FindObjectOfType<PlayerManager>();
-        postProcessingEffectsManager = FindObjectOfType<PostProcessingEffectsManager>();
         timeLeft = roundTime;
     }
 
@@ -37,14 +34,18 @@ public class Timer : MonoBehaviour
         if (timeLeft <= secondsBeforeRoundEndStartChangePlayerAnimation && canPlayChangePlayerEffect)
         {
             canPlayChangePlayerEffect = false;
-            postProcessingEffectsManager.BloomBoom();
-            postProcessingEffectsManager.VignetteBoom();
         }
     }
 
     private void Visualize()
     {
         timerSlider.value = timeLeft / roundTime;
+    }
+
+    internal void DisableTimer()
+    {
+        gameObject.SetActive(false);
+        timerSlider.enabled = false;
     }
 
     private void OnTimeLeft()

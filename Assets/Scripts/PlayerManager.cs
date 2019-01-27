@@ -11,10 +11,13 @@ public class PlayerManager : MonoBehaviour
     public Player[] players;
 
     public static MiniGame currentMiniGame = MiniGame.NONE;
+    private PostProcessingEffectsManager postProcessingEffectsManager;
 
     void Start()
     {
-        if(players.Length !=2 || players[0] == null || players[1] == null)
+        postProcessingEffectsManager = FindObjectOfType<PostProcessingEffectsManager>();
+
+        if (players.Length !=2 || players[0] == null || players[1] == null)
             Debug.LogError("Setup players in player manager");
 
         activePlayer = 0;
@@ -32,6 +35,9 @@ public class PlayerManager : MonoBehaviour
 
         players[activePlayer].gameObject.SetActive(true);
         print("Activated player: " + players[activePlayer].name);
+
+        postProcessingEffectsManager.BloomBoom();
+        postProcessingEffectsManager.VignetteBoom();
     }
 
     public Player GetActivePlayer()
@@ -42,5 +48,11 @@ public class PlayerManager : MonoBehaviour
     public void GetDamage(int damage) {
         Debug.Log("Get damage: " + damage);
         GetActivePlayer().GetDamage(damage);
+    }
+
+    internal void playerLose(Player player)
+    {
+        SwitchPlayers();
+        FindObjectOfType<Timer>().DisableTimer();
     }
 }

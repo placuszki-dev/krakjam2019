@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
         health -= damage;
         print("health: " + health);
         visualizeHealth();
+        if (health < 0)
+            playerManager.playerLose(this);
     }
 
     private void visualizeHealth()
