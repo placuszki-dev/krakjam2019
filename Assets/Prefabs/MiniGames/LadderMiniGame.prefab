@@ -461,8 +461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e832fcd6220b15489cee95dbac5eb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  successClip: {fileID: 8300000, guid: 03bad3fcad6ddf96385488b49d7d4ba3, type: 3}
-  failClip: {fileID: 8300000, guid: b7447f9333909444e878489a3b097ce0, type: 3}
+  successClip: {fileID: 8300000, guid: eaeab3fd780faef4ebc3931edd00d217, type: 3}
+  failClip: {fileID: 8300000, guid: a6d1560d2a8423042b820e48a2289b21, type: 3}
   damageOnFail: 10
   requiredPointsToWin: 10
 --- !u!212 &340983343

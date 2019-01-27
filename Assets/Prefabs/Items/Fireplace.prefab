@@ -106,7 +106,7 @@ AudioSource:
   MinDistance: 7
   MaxDistance: 17
   Pan2D: -0.11
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -114,23 +114,32 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.11459598
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.4295425
+      outSlope: -2.4295425
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.23862952
+      value: 0.24935913
+      inSlope: -1.1078926
+      outSlope: -1.1078926
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.094554864
+    - serializedVersion: 3
+      time: 0.9811249
+      value: 0.014929384
+      inSlope: -0.4119292
+      outSlope: -0.4119292
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -301,6 +310,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5040821719884048266}
     m_Modifications:
+    - target: {fileID: 5344680424437176524, guid: 0564d38015a6f4947b747ce62ca8692f,
+        type: 3}
+      propertyPath: m_Name
+      value: FlickeringLight
+      objectReference: {fileID: 0}
     - target: {fileID: 5344680424437176525, guid: 0564d38015a6f4947b747ce62ca8692f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -355,11 +369,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5344680424437176524, guid: 0564d38015a6f4947b747ce62ca8692f,
-        type: 3}
-      propertyPath: m_Name
-      value: FlickeringLight
       objectReference: {fileID: 0}
     - target: {fileID: 5344680424437176526, guid: 0564d38015a6f4947b747ce62ca8692f,
         type: 3}
