@@ -33,6 +33,6 @@ public class PillsIndicator : MonoBehaviour
 
     internal void OnePlayerLeft()
     {
-        throw new NotImplementedException();
+        return;
     }
 }
