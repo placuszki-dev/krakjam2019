@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum MiniGame { NONE, LADDER };
 
@@ -9,6 +10,7 @@ public class PlayerManager : MonoBehaviour
 {
     private int activePlayer;
     public Player[] players;
+    private int deadPlayers = 0;
 
     public static MiniGame currentMiniGame = MiniGame.NONE;
     private PostProcessingEffectsManager postProcessingEffectsManager;
@@ -52,7 +54,14 @@ public class PlayerManager : MonoBehaviour
 
     internal void playerLose(Player player)
     {
-        SwitchPlayers();
-        FindObjectOfType<Timer>().DisableTimer();
+        deadPlayers++;
+        if (deadPlayers >= 2)
+            SceneManager.LoadScene(0);
+
+        else
+        {
+            SwitchPlayers();
+            FindObjectOfType<Timer>().DisableTimer();
+        }
     }
 }
