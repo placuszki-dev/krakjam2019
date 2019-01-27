@@ -11,3 +11,10 @@ Game: Second thought
 * Player 2
     * Moving: Gamepad 2 analog stick / IJKL
     * Action: Gamepad 2: A / Keyboard: M
+
+  
+## Screenshoots
+![Alt text](screenshoots/s1.png?raw=true "screenshoots/s1.png")  
+![Alt text](screenshoots/s2.png?raw=true "screenshoots/s2.png")  
+![Alt text](screenshoots/s3.png?raw=true "screenshoots/s3.png")  
+ 
