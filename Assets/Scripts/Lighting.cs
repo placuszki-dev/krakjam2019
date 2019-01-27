@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Lighting : MonoBehaviour
 {
+    public int damage;
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Lighting hit " + other.name);
+        if (other.GetComponent<Hero>())
+        {
+            FindObjectOfType<PlayerManager>().GetDamage(damage);
+        }
     }
 
     public void PlaySound()
