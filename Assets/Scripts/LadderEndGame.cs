@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class LadderEndGame : MonoBehaviour
 {
+    public GameObject adderMiniGame;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<LadderMiniGameButton>())
         {
-            FindObjectOfType<LadderMiniGame>().FinishGameFail();
+            adderMiniGame.GetComponent<LadderMiniGame>().FinishGameFail();
         }
     }
 }

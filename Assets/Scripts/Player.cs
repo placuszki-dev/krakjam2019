@@ -45,18 +45,18 @@ public class Player : MonoBehaviour
 
     private void handleMiniGames()
     {
-        if (PlayerManager.currentMiniGame == MiniGame.LADDER)
-            handleMiniGameLadder();
+        LadderMiniGame miniGame = FindObjectOfType<MiniGameManager>().GetCurrentMiniGame();
+        if (miniGame)
+            handleMiniGameLadder(miniGame);
     }
 
-    private void handleMiniGameLadder()
+    private void handleMiniGameLadder(LadderMiniGame miniGame)
     {
         if (XCI.GetButtonDown(XboxButton.A, controller)
             || (Input.GetKeyDown("z") && playerManager.GetActivePlayer().name == "Player1")
             || (Input.GetKeyDown("m") && playerManager.GetActivePlayer().name == "Player2"))
         {
             print("ACTION");
-            LadderMiniGame miniGame = FindObjectOfType<LadderMiniGame>();
             miniGame.OnUserActionButtonPressed();
         }
     }

@@ -30,6 +30,7 @@ public class LadderMiniGame : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         PlayerManager.currentMiniGame = MiniGame.LADDER;
         leftPointsToWin = requiredPointsToWin;
+        FindObjectOfType<MiniGameManager>().SetCurrentMiniGame(this);
     }
 
     internal void FinishGameFail()
@@ -41,6 +42,7 @@ public class LadderMiniGame : MonoBehaviour
         FindObjectOfType<SoundPlayer>().PlaySound(failClip);
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         FindObjectOfType<PlayerManager>().GetDamage(damageOnFail);
+        FindObjectOfType<MiniGameManager>().SetCurrentMiniGame(null);
     }
 
     internal void FinishGameSuccess()
@@ -52,6 +54,7 @@ public class LadderMiniGame : MonoBehaviour
         FindObjectOfType<SoundPlayer>().PlaySound(successClip);
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         hero.transform.position = transform.Find("WinPosition").position;
+        FindObjectOfType<MiniGameManager>().SetCurrentMiniGame(null);
     }
 
     private void DestroyAllButtons()
