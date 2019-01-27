@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 
 public class Player : MonoBehaviour
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     private Hero hero;
     private Rigidbody2D heroRigid;
     private Hand hand;
+    public XboxController controller;
 
     public Color timerColor;
 
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
         heroRigid = hero.GetComponent<Rigidbody2D>();
         hand = FindObjectOfType<Hand>();
         playerManager = FindObjectOfType<PlayerManager>();
+        XCI.DEBUG_LogControllerNames();
     }
 
     void FixedUpdate()
@@ -33,11 +36,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown(gameObject.name + "Action"))
-            print(gameObject.name + "Action");
-
-        if (Input.GetButtonDown(gameObject.name + "Action"))
-            handleMiniGames();
+        handleMiniGames();
     }
 
     private void handleMiniGames()
@@ -48,7 +47,7 @@ public class Player : MonoBehaviour
 
     private void handleMiniGameLadder()
     {
-        if (Input.GetButtonDown(gameObject.name + "Action"))
+        if (XCI.GetButtonDown(XboxButton.A, controller))
         {
             LadderMiniGame miniGame = FindObjectOfType<LadderMiniGame>();
             miniGame.OnUserActionButtonPressed();
@@ -57,8 +56,8 @@ public class Player : MonoBehaviour
 
     private void handleLeftAnalog()
     {
-        float moveHorizontal = Input.GetAxis(gameObject.name + "Horizontal");
-        float moveVertical = Input.GetAxis(gameObject.name + "Vertical");
+        float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX, controller);
+        float moveVertical = XCI.GetAxis(XboxAxis.LeftStickY, controller);
 
         Vector3 movement = new Vector3(moveHorizontal, moveVertical);
         movement *= hero.speed;
