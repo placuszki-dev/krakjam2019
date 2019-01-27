@@ -64,7 +64,7 @@ MonoBehaviour:
   attackingSpeed: 20
   attackingRadius: 2
   rotatingSpeed: 40
-  damage: 1
+  damage: 5
   body: {fileID: 7364224697908058624}
 --- !u!1 &6480790502826678755
 GameObject:
