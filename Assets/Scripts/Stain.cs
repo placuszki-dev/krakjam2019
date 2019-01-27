@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Stain : MonoBehaviour
 {
-    private float previousLinearDrag = 0f;
-    private float previousAngularDrag = 0f;
-    private float previousSpeed = 0f;
+    private float initialLinearDrag;
+    private float initialAngularDrag;
+    private float initialSpeed;
     private Hero hero;
     private Rigidbody2D heroRigidBody;
 
@@ -17,14 +19,14 @@ public class Stain : MonoBehaviour
     void Start() {
         hero = FindObjectOfType<Hero>();
         heroRigidBody = hero.GetComponent<Rigidbody2D>();
+        initialLinearDrag = heroRigidBody.drag;
+        initialAngularDrag = heroRigidBody.angularDrag;
+        initialSpeed = hero.speed;
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col && col.GetComponent<Hero>()) {
-            previousLinearDrag = heroRigidBody.drag;
-            previousAngularDrag = heroRigidBody.angularDrag;
-            previousSpeed = hero.speed;
             heroRigidBody.drag = linearDrag;
             heroRigidBody.angularDrag = angularDrag;
             hero.speed = slowSpeed;
@@ -34,9 +36,9 @@ public class Stain : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         if (col && col.GetComponent<Hero>()) {
-            heroRigidBody.drag = previousLinearDrag;
-            heroRigidBody.angularDrag = previousAngularDrag;
-            hero.speed = previousSpeed;        
+            heroRigidBody.drag = initialLinearDrag;
+            heroRigidBody.angularDrag = initialAngularDrag;
+            hero.speed = initialSpeed;        
         }
     }
 }
