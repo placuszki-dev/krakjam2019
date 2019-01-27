@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Color timerColor;
 
     private PlayerManager playerManager;
+    private int health = 100;
 
     void Start()
     {
@@ -55,6 +56,11 @@ public class Player : MonoBehaviour
             LadderMiniGame miniGame = FindObjectOfType<LadderMiniGame>();
             miniGame.OnUserActionButtonPressed();
         }
+    }
+
+    internal void GetDamage(int damage)
+    {
+        health -= damage;
     }
 
     private void handleLeftAnalog()

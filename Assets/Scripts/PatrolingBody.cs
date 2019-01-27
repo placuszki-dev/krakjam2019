@@ -7,17 +7,11 @@ public class PatrolingBody : MonoBehaviour
 
     private PlayerManager playerManager;
 
-    public float damage = 10;
-    // Start is called before the first frame update
+    public int damage = 10;
     void Start()
+
     {
         playerManager = FindObjectOfType<PlayerManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void Hurt()

@@ -19,7 +19,7 @@ public class Flitting : MonoBehaviour
 
     public float rotatingSpeed = 40f;
 
-    public float damage = 1;
+    public int damage = 1;
 
     public GameObject body;
 

@@ -9,7 +9,7 @@ public class Trap : MonoBehaviour
 
     public float trapDuration = 3f;
 
-    public float damage = 15;
+    public int damage = 15;
 
     // Start is called before the first frame update
     void Start()

@@ -6,7 +6,7 @@ public class SmokeArea : MonoBehaviour
 {
     private PlayerManager playerManager;
 
-    public float damage = 5;
+    public int damage = 5;
     // Start is called before the first frame update
     void Start()
     {

@@ -39,7 +39,8 @@ public class PlayerManager : MonoBehaviour
         return players[activePlayer];
     }
 
-    public void GetDamage(float damage) {
+    public void GetDamage(int damage) {
         Debug.Log("Get damage: " + damage);
+        GetActivePlayer().GetDamage(damage);
     }
 }
