@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
 
     private PlayerManager playerManager;
 
-    public Slider timerSlider;
+    public PillsIndicator pillsIndicator;
     public RectTransform timerFill;
 
     private bool canPlayChangePlayerEffect = true;
@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour
     void Awake()
     {
         playerManager = FindObjectOfType<PlayerManager>();
+        pillsIndicator = FindObjectOfType<PillsIndicator>();
         timeLeft = roundTime;
     }
 
@@ -39,13 +40,13 @@ public class Timer : MonoBehaviour
 
     private void Visualize()
     {
-        timerSlider.value = timeLeft / roundTime;
+        pillsIndicator.SetProgress(timeLeft / roundTime);
     }
 
     internal void DisableTimer()
     {
         gameObject.SetActive(false);
-        timerSlider.enabled = false;
+        pillsIndicator.OnePlayerLeft();
     }
 
     private void OnTimeLeft()

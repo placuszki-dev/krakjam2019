@@ -47,6 +47,14 @@ public class PlayerManager : MonoBehaviour
         return players[activePlayer];
     }
 
+    public Player GetInactivePlayer()
+    {
+        int inactivePlayerIndex = activePlayer + 1;
+        if (inactivePlayerIndex >= 2)
+            inactivePlayerIndex = 0;
+        return players[inactivePlayerIndex];
+    }
+
     public void GetDamage(int damage) {
         Debug.Log("Get damage: " + damage);
         GetActivePlayer().GetDamage(damage);
