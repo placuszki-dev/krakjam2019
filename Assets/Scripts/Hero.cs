@@ -22,4 +22,12 @@ public class Hero : MonoBehaviour
     {
         animator.SetFloat("velocity", rigid.velocity.sqrMagnitude);
     }
+
+    public void InDarkArea() {
+
+    }
+
+    public void InBrightArea() {
+
+    }
 }

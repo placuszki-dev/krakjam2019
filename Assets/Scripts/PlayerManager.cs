@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     {
         postProcessingEffectsManager = FindObjectOfType<PostProcessingEffectsManager>();
 
-        if (players.Length !=2 || players[0] == null || players[1] == null)
+        if (players.Length != 2 || players[0] == null || players[1] == null)
             Debug.LogError("Setup players in player manager");
 
         activePlayer = 0;
@@ -55,7 +55,8 @@ public class PlayerManager : MonoBehaviour
         return players[inactivePlayerIndex];
     }
 
-    public void GetDamage(int damage) {
+    public void GetDamage(int damage)
+    {
         Debug.Log("Get damage: " + damage);
         GetActivePlayer().GetDamage(damage);
     }
@@ -71,5 +72,21 @@ public class PlayerManager : MonoBehaviour
             SwitchPlayers();
             FindObjectOfType<Timer>().DisableTimer();
         }
+    }
+
+    public void InDarkArea()
+    {
+        Invoke("ScaredDamage", 5f);
+    }
+
+    public void InBrightArea()
+    {
+        CancelInvoke("ScaredDamage");
+    }
+
+    void ScaredDamage()
+    {
+        GetDamage(1);
+        Invoke("ScaredDamage", 0.2f);
     }
 }
