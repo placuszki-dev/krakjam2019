@@ -55,3 +55,6 @@ TagManager:
   - name: Hero
     uniqueID: 4243268929
     locked: 0
+  - name: InFront
+    uniqueID: 246972387
+    locked: 0
