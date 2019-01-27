@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         if (hero.canMove)
         {
             handleLeftAnalog();
-            handleRightAnalog();
+            //handleRightAnalog();
         }
     }
 
@@ -47,8 +47,11 @@ public class Player : MonoBehaviour
 
     private void handleMiniGameLadder()
     {
-        if (XCI.GetButtonDown(XboxButton.A, controller))
+        if (XCI.GetButtonDown(XboxButton.A, controller)
+            || (Input.GetKeyDown("z") && playerManager.GetActivePlayer().name == "Player1")
+            || (Input.GetKeyDown("m") && playerManager.GetActivePlayer().name == "Player2"))
         {
+            print("ACTION");
             LadderMiniGame miniGame = FindObjectOfType<LadderMiniGame>();
             miniGame.OnUserActionButtonPressed();
         }
@@ -58,6 +61,17 @@ public class Player : MonoBehaviour
     {
         float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX, controller);
         float moveVertical = XCI.GetAxis(XboxAxis.LeftStickY, controller);
+
+        if (Input.GetKey("a") && playerManager.GetActivePlayer().name == "Player1") moveHorizontal = -1;
+        if (Input.GetKey("d") && playerManager.GetActivePlayer().name == "Player1") moveHorizontal = 1;
+        if (Input.GetKey("s") && playerManager.GetActivePlayer().name == "Player1") moveVertical = -1;
+        if (Input.GetKey("w") && playerManager.GetActivePlayer().name == "Player1") moveVertical = 1;
+
+        if (Input.GetKey("j") && playerManager.GetActivePlayer().name == "Player2") moveHorizontal = -1;
+        if (Input.GetKey("l") && playerManager.GetActivePlayer().name == "Player2") moveHorizontal = 1;
+        if (Input.GetKey("k") && playerManager.GetActivePlayer().name == "Player2") moveVertical = -1;
+        if (Input.GetKey("i") && playerManager.GetActivePlayer().name == "Player2") moveVertical = 1;
+
 
         Vector3 movement = new Vector3(moveHorizontal, moveVertical);
         movement *= hero.speed;
@@ -88,6 +102,7 @@ public class Player : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis(gameObject.name + "HorizontalRight");
         float moveVertical = Input.GetAxis(gameObject.name + "VerticalRight");
+        
         Vector3 dir = new Vector3(moveHorizontal * Time.deltaTime, moveVertical * Time.deltaTime);
         if (dir.magnitude > 0.00001)
         {
