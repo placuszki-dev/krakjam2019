@@ -3,6 +3,12 @@ Subject: What home means to you?
 
 Game: Second thought
 
+# How to play
+1. Have a Windows.
+2. Download the newest release from here: https://github.com/Pastew/krakjam2019/releases
+3. It should work.
+4. If you don't have a Windows, clone the repo and build with Unity 2018.3.* and build.
+
 ## Controls
 * Player 1
     * Moving: Gamepad 1 analog stick / WSAD
