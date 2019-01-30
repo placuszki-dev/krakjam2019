@@ -26,7 +26,7 @@ Your body is your home. Too bad someone else also lives there. Two-player game. 
 ![Alt text](screenshoots/s3.PNG?raw=true "screenshoots/s3.PNG")  
  
 ## Authors
-@Sieciesznik - game design, level design, music, sounds
-@ympek - graphics, music, sounds, game design
-@darkowic - coding, animations
-@Pastew - coding, animations
+* [@Sieciesznik](https://github.com/Sieciesznik) - game design, level design, music, sounds
+* [@ympek](https://github.com/ympek) - graphics, music, sounds, game design
+* [@darkowic](https://github.com/darkowic) - coding, animations
+* [@Pastew](https://github.com/Pastew) - coding, animations
