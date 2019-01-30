@@ -1,8 +1,9 @@
 # Krak Jam 2019
 Subject: What home means to you?
-https://globalgamejam.org/2019/games/second-thought
 
 ## Game we created: Second thought 
+https://globalgamejam.org/2019/games/second-thought  
+
 Your body is your home. Too bad someone else also lives there. Two-player game. You are shizophrenic running out of a hospital for the mentally ill and both players control one character. Every 5 seconds the control is given to the other one. Your goal is to escape the hospital, but only one "self" can do it, so you need to finish the other one beforehand.
 
 # How to play
