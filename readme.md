@@ -1,7 +1,7 @@
 # Krak Jam 2019
 Subject: What home means to you?
 
-Game: Second thought
+## Game we created: Second thought
 
 # How to play
 1. Have a Windows.
